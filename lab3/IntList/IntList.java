@@ -1,5 +1,8 @@
 //import jdk.nashorn.internal.ir.WhileNode;
 
+import org.omg.PortableInterceptor.INACTIVE;
+import org.omg.PortableInterceptor.NON_EXISTENT;
+
 import java.util.Formatter;
 //import java.util.Objects;
 
@@ -122,16 +125,36 @@ public class IntList {
      * as an input, returns null.
      */
     public static IntList reverse(IntList A) {
+        if (A == null || A.rest == null) {
+            return A;
+        }
+        IntList linktoNode = A;
+        IntList Node = A.rest;
+
+        if (Node.rest != null) {
+            IntList Nodetolink = Node.rest;
+            A.rest = null;
+            while (Nodetolink != null) {
+                Node.rest = linktoNode;
+                linktoNode = Node;
+                Node = Nodetolink;
+                Nodetolink = Nodetolink.rest;
+            }
+            Node.rest = linktoNode;
+            return Node;
+        } else {
+            Node.rest = linktoNode;
+            linktoNode.rest = null;
+            return Node;
+        }
+    }
+
+    public static IntList reverseRecursively(IntList A) {
         if (A == null) {
             return null;
         }
-        IntList sta = new IntList(A.first, null);
-        A = A.rest;
-        while (A != null) {
-            sta = new IntList(A.first, sta);
-            A = A.rest;
-        }
-        return sta;
+
+        return null;
     }
 
 
