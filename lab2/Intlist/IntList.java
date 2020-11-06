@@ -69,8 +69,8 @@ public class IntList {
         if (L == null) {
             return null;
         }
-        return new IntList(L.first * L.first, squareListRecursive(L.rest));// The link depends on the
-        // IntList(first,rese)
+        return new IntList(L.first * L.first, squareListRecursive(L.rest));
+        // The link depends on the IntList(first,rese)
     }
 
     /** DO NOT MODIFY ANYTHING ABOVE THIS LINE! */
@@ -82,18 +82,19 @@ public class IntList {
      */
 
     public static IntList dcatenate(IntList A, IntList B) {
-        if(A==null||B==null){
-            if(A!=null)return   A;
-            else if(B!=null)return   B;
+        if (A == null || B == null)
+        {
+            if (A != null) return   A;
+            else if (B != null) return   B;
             else return null;
         }
-        //TODO:  fill in method
-        IntList result=A;
-        while(A.rest!=null)
-        {
-            A=A.rest;
+
+        IntList result = A;
+        while (A.rest != null) {
+            A = A.rest;
         }
-        A.rest=B;
+        A.rest = B;
+
         return result;
     }
 
@@ -103,24 +104,24 @@ public class IntList {
      */
     public static IntList catenate(IntList A, IntList B) {
         //TODO:  fill in method
-        if(A==null||B==null){
-            if(A!=null)return   A;
-            else if(B!=null)return   B;
+        if (A == null || B == null) {
+            if (A != null) return   A;
+            else if (B != null)return   B;
             else return null;
         }
-        IntList result=new IntList(A.first,null);
-        IntList out=result;
-        while (A.rest!=null){
-            A=A.rest;
-            result.rest=new IntList(A.first,null);
-            result=result.rest;
+        IntList result = new IntList(A.first, null);
+        IntList out = result;
+        while (A.rest != null) {
+            A = A.rest;
+            result.rest = new IntList(A.first, null);
+            result = result.rest;
         }
-        while(B.rest!=null){
-            result.rest=new IntList(B.first,null);
-            result=result.rest;
-            B=B.rest;
+        while (B.rest != null) {
+            result.rest = new IntList(B.first, null);
+            result = result.rest;
+            B = B.rest;
         }
-        result.rest=new IntList(B.first,null);
+        result.rest = new IntList(B.first, null);
         return out;
     }
 

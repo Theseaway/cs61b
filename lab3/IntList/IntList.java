@@ -1,11 +1,14 @@
+//import jdk.nashorn.internal.ir.WhileNode;
+
 import java.util.Formatter;
+//import java.util.Objects;
 
 /**
  * A naked recursive list of integers, similar to what we saw in lecture 3, but
  * with a large number of additional methods.
  *
  * @author P. N. Hilfinger, with some modifications by Josh Hug and melaniecebula
- *         [Do not modify this file.]
+ * [Do not modify this file.]
  */
 public class IntList {
     /**
@@ -69,8 +72,9 @@ public class IntList {
         if (L == null) {
             return null;
         }
-        return new IntList(L.first * L.first, squareListRecursive(L.rest));// The link depends on the
-        // IntList(first,rese)
+        return new IntList(L.first * L.first, squareListRecursive(L.rest));
+
+        // The link depends on the IntList(first,rese)
     }
 
     /** DO NOT MODIFY ANYTHING ABOVE THIS LINE! */
@@ -82,13 +86,12 @@ public class IntList {
      */
 
     public static IntList dcatenate(IntList A, IntList B) {
-        //TODO:  fill in method
-        IntList result=A;
-        while(A.rest!=null)
-        {
-            A=A.rest;
+
+        IntList result = A;
+        while (A.rest != null) {
+            A = A.rest;
         }
-        A.rest=B;
+        A.rest = B;
         return result;
     }
 
@@ -97,43 +100,39 @@ public class IntList {
      * * elements of B.  May NOT modify items of A.  Use 'new'.
      */
     public static IntList catenate(IntList A, IntList B) {
-        //TODO:  fill in method
-        IntList result=new IntList(A.first,null);
-        IntList out=result;
-        while (A.rest!=null){
-            A=A.rest;
-            result.rest=new IntList(A.first,null);
-            result=result.rest;
+        IntList result = new IntList(A.first, null);
+        IntList out = result;
+        while (A.rest != null) {
+            A = A.rest;
+            result.rest = new IntList(A.first, null);
+            result = result.rest;
         }
-        while(B.rest!=null){
-            result.rest=new IntList(B.first,null);
-            result=result.rest;
-            B=B.rest;
+        while (B.rest != null) {
+            result.rest = new IntList(B.first, null);
+            result = result.rest;
+            B = B.rest;
         }
-        result.rest=new IntList(B.first,null);
+        result.rest = new IntList(B.first, null);
         return out;
     }
 
     /**
-     * Return a list that is reversed
-     *
+     * Returns the reverse of the given IntList.
+     * This method is destructive. If given null
+     * as an input, returns null.
      */
-    public static IntList reverse(IntList A){
-
-        return A;
+    public static IntList reverse(IntList A) {
+        if (A == null) {
+            return null;
+        }
+        IntList sta = new IntList(A.first, null);
+        A = A.rest;
+        while (A != null) {
+            sta = new IntList(A.first, sta);
+            A = A.rest;
+        }
+        return sta;
     }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     /**
