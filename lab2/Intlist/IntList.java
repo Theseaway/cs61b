@@ -29,7 +29,7 @@ public class IntList {
      * A List with null rest, and first = 0.
      */
     public IntList() {
-    /* NOTE: public IntList () { }  would also work. */
+        /* NOTE: public IntList () { }  would also work. */
         this(0, null);
     }
 
@@ -69,7 +69,8 @@ public class IntList {
         if (L == null) {
             return null;
         }
-        return new IntList(L.first * L.first, squareListRecursive(L.rest));
+        return new IntList(L.first * L.first, squareListRecursive(L.rest));// The link depends on the
+        // IntList(first,rese)
     }
 
     /** DO NOT MODIFY ANYTHING ABOVE THIS LINE! */
@@ -82,7 +83,13 @@ public class IntList {
 
     public static IntList dcatenate(IntList A, IntList B) {
         //TODO:  fill in method
-        return null;
+        IntList result=A;
+        while(A.rest!=null)
+        {
+            A=A.rest;
+        }
+        A.rest=B;
+        return result;
     }
 
     /**
@@ -91,14 +98,21 @@ public class IntList {
      */
     public static IntList catenate(IntList A, IntList B) {
         //TODO:  fill in method
-        return null;
+        IntList result=new IntList(A.first,null);
+        IntList out=result;
+        while (A.rest!=null){
+            A=A.rest;
+            result.rest=new IntList(A.first,null);
+            result=result.rest;
+        }
+        while(B.rest!=null){
+            result.rest=new IntList(B.first,null);
+            result=result.rest;
+            B=B.rest;
+        }
+        result.rest=new IntList(B.first,null);
+        return out;
     }
-
-
-
-
-
-
 
 
 
