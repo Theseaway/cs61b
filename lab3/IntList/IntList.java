@@ -120,7 +120,7 @@ public class IntList {
      * This method is destructive. If given null
      * as an input, returns null.
      */
-    public static IntList reverse(IntList A) {
+    /*public static IntList reverse(IntList A) {
         if (A == null || A.rest == null) {
             return A;
         }
@@ -143,15 +143,30 @@ public class IntList {
             linktoNode.rest = null;
             return Node;
         }
+    }*/
+
+
+
+    /* For some reason ,this code should be reviewed sometimes
+    ** please understand how it works and the principle in it.
+     */
+    public static IntList reverse(IntList A) {
+        A=reversehelper(A);
+        return A;
     }
 
-    public static IntList reverseRecursively(IntList A) {
-        if (A == null) {
-            return null;
+    public static IntList reversehelper(IntList A){
+        if(A==null||A.rest==null){
+            return A;
+        }else
+        {
+            IntList result=reversehelper(A.rest);
+            A.rest.rest=A;
+            A.rest=null;
+            return result;
         }
-
-        return null;
     }
+
 
 
     /**
